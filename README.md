@@ -22,7 +22,7 @@ $$
 \end{align*}
 $$
 
-We will prove both directions separately.
+Ill prove both ways separately.
 
 ### First way: $O(\log_{2} n) \subseteq O(\log_{5} n)$
 
@@ -42,11 +42,11 @@ $$
 
 Since $\log_{5} 2 > 0$, let $c_1 = \frac{1}{\log_{5} 2}$.
 
-Thus, we have shown that $\log_{2} n \in O(\log_{5} n)$.
+I have shown that $\log_{2} n \in O(\log_{5} n)$.
 
 ### Second way: $O(\log_{5} n) \subseteq O(\log_{2} n)$
 
-Let's prove that $\log_{5} n \leq c_2 \cdot \log_{2} n$.
+Prove that $\log_{5} n \leq c_2 \cdot \log_{2} n$.
 
 Taking logarithms with base 2 on both sides:
 
@@ -62,7 +62,7 @@ $$
 
 Since $\log_{2} 5 > 0$, let $c_2 = \log_{2} 5$.
 
-Thus, we have shown that $\log_{5} n \in O(\log_{2} n)$.
+I have shown that $\log_{5} n \in O(\log_{2} n)$.
 
 Therefore, we have established that $O(\log_{2} n) = O(\log_{5} n)$.
 
