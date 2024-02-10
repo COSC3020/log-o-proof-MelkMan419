@@ -1,68 +1,50 @@
-[![Review Assignment Due Date](https://classroom.github.com/assets/deadline-readme-button-24ddc0f5d75046c5622901739e7c5dd533143b0c8e959d652212380cedb1ea36.svg)](https://classroom.github.com/a/fbkbKZ5N)
-# Asymptotic Equivalences
+We want to show that $O(\log_{2} n)$ and $O(\log_{5} n)$ are equivalent. For any positive function $T(n)$, we need to prove the following:
 
-In the lectures, we said that logarithms with different bases don't affect the
-asymptotic complexity of an algorithm. Prove that $O(\log_{2} n)$ is the same as
-$O(\log_{5} n)$. Use the mathematical definition of $O$ -- do a formal proof,
-not just the intuition.
+1. If $T(n) \in O(\log_{2} n)$, then $T(n) \in O(\log_{5} n)$.
+2. If $T(n) \in O(\log_{5} n)$, then $T(n) \in O(\log_{2} n)$.
 
-I have started with the formal definition of $O$ below. Add your answer to this
-markdown file. [This
-page](https://docs.github.com/en/get-started/writing-on-github/working-with-advanced-formatting/writing-mathematical-expressions)
-might help with the notation for mathematical expressions.
+### Direction 1: $O(\log_{2} n) \subseteq O(\log_{5} n)$
 
-$T(n) \in O(f(n)) \iff \exists c, n_0: T(n) \leq c \cdot f(n) \forall n \geq n_0$
-
-To prove that $O(\log_{2} n)$ is equivalent to $O(\log_{5} n)$, we need to show that there exist constants $c_1$, $c_2$, and $n_0$ such that for all $n \geq n_0$, 
+Assume $T(n) \in O(\log_{2} n)$. By definition, there exist constants $c_1$ and $n_1$ such that for all $n \geq n_1$,
 
 $$
-\begin{align*}
-\log_{2} n &\leq c_1 \cdot \log_{5} n \\
-\text{or}\quad \log_{5} n &\leq c_2 \cdot \log_{2} n
-\end{align*}
+T(n) \leq c_1 \cdot \log_{2} n.
 $$
 
-Ill prove both ways separately.
-
-### First way: $O(\log_{2} n) \subseteq O(\log_{5} n)$
-
-Let's prove that $\log_{2} n \leq c_1 \cdot \log_{5} n$.
-
-Taking logarithms with base 5 on both sides:
+We want to show that $T(n) \in O(\log_{5} n)$, i.e., there exist constants $c_2$ and $n_2$ such that for all $n \geq n_2$,
 
 $$
-\log_{5} 2^{\log_{2} n} \leq \log_{5} n^{c_1}
+T(n) \leq c_2 \cdot \log_{5} n.
 $$
 
-Using the logarithm power rule, we get:
+Taking the logarithm base 5 on both sides of the equation:
 
 $$
-\frac{\log_{5} n}{\log_{5} 2} \leq c_1
+\log_{5} T(n) \leq \log_{5} (c_1 \cdot \log_{2} n).
 $$
 
-Since $\log_{5} 2 > 0$, let $c_1 = \frac{1}{\log_{5} 2}$.
-
-I have shown that $\log_{2} n \in O(\log_{5} n)$.
-
-### Second way: $O(\log_{5} n) \subseteq O(\log_{2} n)$
-
-Prove that $\log_{5} n \leq c_2 \cdot \log_{2} n$.
-
-Taking logarithms with base 2 on both sides:
+Using the logarithmic properties:
 
 $$
-\log_{2} 5^{\log_{5} n} \leq \log_{2} n^{c_2}
+\log_{5} T(n) \leq \frac{\log_{2} n}{\log_{2} 5} + \log_{5} c_1.
 $$
 
-Using the logarithm power rule, we get:
+Let $c_2 = \frac{c_1}{\log_{2} 5}$ and $n_2 = n_1$. Then for all $n \geq n_2$, we have $T(n) \leq c_2 \cdot \log_{5} n$, thus showing that $T(n) \in O(\log_{5} n)$.
+
+### Direction 2: $O(\log_{5} n) \subseteq O(\log_{2} n)$
+
+Similarly, assume $T(n) \in O(\log_{5} n)$. By definition, there exist constants $c_3$ and $n_3$ such that for all $n \geq n_3$,
 
 $$
-\frac{\log_{2} n}{\log_{2} 5} \leq c_2
+T(n) \leq c_3 \cdot \log_{5} n.
 $$
 
-Since $\log_{2} 5 > 0$, let $c_2 = \log_{2} 5$.
+We want to show that $T(n) \in O(\log_{2} n)$, i.e., there exist constants $c_4$ and $n_4$ such that for all $n \geq n_4$,
 
-I have shown that $\log_{5} n \in O(\log_{2} n)$.
+$$
+T(n) \leq c_4 \cdot \log_{2} n.
+$$
 
-Therefore, we have established that $O(\log_{2} n) = O(\log_{5} n)$.
+Following a similar approach as in the first direction, we can choose $c_4 = c_3 \cdot \log_{2} 5$ and $n_4 = n_3$ to establish the desired inequality.
 
+Therefore, we have shown that $O(\log_{2} n) = O(\log_{5} n)$ for any positive function $T(n)$.
